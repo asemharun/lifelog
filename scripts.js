@@ -83,6 +83,11 @@ function populateTable(tableId, data, limit) {
             row.innerHTML = `<td>${item.place}</td><td>${item.amount}</td>`;
         }
     });
+
+    // Add click listeners for names
+    if (tableId === 'peopleData') {
+        setupNameClickListeners();
+    }
 }
 
 // Setup show more/less button functionality
@@ -126,6 +131,74 @@ function toggleShowButtons(section) {
         lessButton.style.display = placesLimit > 12 ? 'inline-block' : 'none';
     }
 }
+
+// Setup click listeners for names
+function setupNameClickListeners() {
+    document.querySelectorAll('#peopleData tbody tr td:first-child').forEach(cell => {
+        cell.addEventListener('click', function () {
+            const name = this.textContent;
+            showDetailedView(name);
+        });
+    });
+}
+
+// Show detailed view for a person
+function showDetailedView(name) {
+    // Hide main tables
+    document.getElementById('mainTables').classList.add('d-none');
+
+    // Show detailed view
+    const detailedView = document.getElementById('detailedView');
+    detailedView.classList.remove('d-none');
+
+    // Set the person's name in the table header
+    document.getElementById('personNameHeader').textContent = name;
+
+    // Fetch detailed data for the person
+    fetchPersonData(name);
+}
+
+// Fetch data for the person across all years
+function fetchPersonData(name) {
+    const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]; // Add more years as needed
+    const detailedTableBody = document.querySelector('#detailedTable tbody');
+    detailedTableBody.innerHTML = ''; // Clear previous data
+
+    let personData = [];
+
+    const fetchPromises = years.map(year => {
+        const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B105?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
+
+        return fetch(peopleUrl)
+            .then(response => response.json())
+            .then(data => {
+                const row = data.values.find(row => row[0] === name);
+                if (row) {
+                    personData.push({ year, amount: parseInt(row[1]) || 0 });
+                }
+            });
+    });
+
+    Promise.all(fetchPromises).then(() => {
+        // Sort data by year descending
+        personData.sort((a, b) => b.year - a.year);
+
+        // Populate the detailed table
+        personData.forEach(item => {
+            const row = detailedTableBody.insertRow();
+            row.innerHTML = `<td>${item.year}</td><td>${item.amount}</td>`;
+        });
+    });
+}
+
+// Return to main view
+document.getElementById('returnButton').addEventListener('click', function () {
+    // Hide detailed view
+    document.getElementById('detailedView').classList.add('d-none');
+
+    // Show main tables
+    document.getElementById('mainTables').classList.remove('d-none');
+});
 
 // Initial fetch for the default year (2024)
 fetchDataForYear(currentYear);

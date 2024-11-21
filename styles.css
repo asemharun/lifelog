@@ -134,3 +134,44 @@ table tr:nth-child(odd) {
     background-color: #c7caff;
     color: #383d9e;
 }
+
+
+.d-none {
+    display: none !important;
+}
+
+/* Detailed Table Header */
+#detailedTable thead th {
+    background-color: #9398f0 !important; /* Ensure background color is applied */
+    color: #FFFFFF !important; /* Ensure text color is white */
+    font-weight: 600;
+    text-align: left;
+    padding: 14px !important;
+}
+
+#detailedTable th, #detailedTable td {
+    padding: 14px !important;
+    text-align: left;
+    border: none !important;
+    color: #77737e; /* Text color for table content */
+}
+
+#detailedTable thead {
+    background-color: #9398f0; /* Match the header color to main tables */
+    color: #FFFFFF; /* Text color for headers */
+    font-weight: 600;
+}
+
+#detailedTable tr:nth-child(even) {
+    background-color: #e7e8fd; /* Match even row color to main tables */
+}
+
+#detailedTable tr:nth-child(odd) {
+    background-color: #FFFFFF; /* Match odd row color to main tables */
+}
+
+/* Ensure hover effect is visible */
+#detailedTable tbody tr:hover {
+    background-color: #dcddf1 !important; /* Hover background color */
+    color: #FFFFFF !important; /* Text remains readable on hover */
+}
