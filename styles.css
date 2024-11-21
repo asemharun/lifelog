@@ -1,0 +1,136 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #cbdeff;
+    color: #77737e;
+}
+
+.rounded-container {
+    background-color: #ecedff; /* Background color */
+    border-radius: 40px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional shadow for a subtle effect */
+}
+
+table {
+    border-collapse: collapse; 
+    border-radius: 20px;
+    overflow: hidden;  
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+table th, table td {
+    padding: 14px !important;
+    text-align: left;
+    border: none !important;
+    color: #FFFFFF;
+}
+
+table td {
+    color: #88878a; /* FONT COLOUR */
+}
+table tr:nth-child(even) {
+    background-color: #e7e8fd;
+}
+table tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+
+/* Ensure the hover background is darker, and the text remains white */
+.table-hover tbody tr:hover {
+    background-color: #dcddf1 !important; /* Custom darker hover background */
+    color: #FFFFFF !important; /* Force text to stay white */
+}
+
+/* Remove potential conflicting link styles */
+.table-hover tbody tr a:hover {
+    color: #FFFFFF !important; /* Ensure links also stay white */
+}
+
+/* Explicitly reset Bootstrap's default text hover behavior */
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    color: #FFFFFF !important;
+}
+
+#peopleData thead {
+    background-color: #9398f0;
+}
+
+#peopleData th {
+    background-color: #9398f0;
+    color: #FFFFFF; /* Ensures text is readable */
+    font-weight: 600; /* Bold font for headers */
+}
+
+#placesData thead {
+    background-color: #9398f0;
+}
+
+#placesData th {
+    background-color: #9398f0;
+    color: #FFFFFF; /* Ensures text is readable */
+    font-weight: 600; /* Bold font for headers */
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #c7caff;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+.btn:hover {
+    background-color: #9498e0;
+    color: #FFFFFF;
+}
+.btn-group-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.btn-group-container button {
+    flex: 1;
+}
+.chevron-show-more, .chevron-show-less {
+    margin-left: 10px;
+}
+
+
+/* Design for dropdown */
+
+.btn-pill {
+    border-radius: 50px;
+    background-color: #c7caff;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    font-size: 14px;
+    width: 160px;
+}
+
+.btn-pill:hover {
+    background-color: #b3b8f0;
+    color: #383d9e;
+}
+
+.dropdown-menu {
+    border-radius: 12px;
+    background-color: #ecedff;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #88878a;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #c7caff;
+    color: #383d9e;
+}
