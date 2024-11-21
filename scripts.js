@@ -9,7 +9,7 @@ let placesData = [];
 // Function to fetch data for the selected year
 function fetchDataForYear(year) {
     // Update the year in the dropdown
-    document.getElementById('yearDropdown').innerHTML = `${year} <span class="chevron-show-more">&#11167;</span>`;
+    document.getElementById('yearDropdown').innerHTML = `${year} <span><i class="bi bi-caret-down-fill"></i>`;
     
     // Google Sheets API URLs for the selected year
     const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B105?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
