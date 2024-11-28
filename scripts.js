@@ -12,8 +12,8 @@ function fetchDataForYear(year) {
     document.getElementById('yearDropdown').innerHTML = `${year} <span><i class="bi bi-caret-down-fill"></i>`;
     
     // Google Sheets API URLs for the selected year
-    const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B105?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
-    const placesUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!D4:E171?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
+    const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B120?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
+    const placesUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!D4:E218?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
 
     // Fetch data for people
     fetch(peopleUrl)
@@ -45,7 +45,7 @@ function fetchDataForYear(year) {
 // Function to update dropdown menu dynamically
 function updateDropdownMenu(currentYear) {
     const dropdownMenu = document.querySelector('.dropdown-menu');
-    const years = [2024, 2023, 2022, 2021, 2020, 2019]; // List of available years
+    const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017]; // List of available years
     dropdownMenu.innerHTML = ''; // Clear existing dropdown items
 
     // Generate dropdown items, excluding the current year
@@ -167,7 +167,7 @@ function fetchPersonData(name) {
     let personData = [];
 
     const fetchPromises = years.map(year => {
-        const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B105?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
+        const peopleUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!A4:B120?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
 
         return fetch(peopleUrl)
             .then(response => response.json())
