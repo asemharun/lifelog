@@ -1,4 +1,4 @@
-let currentYear = 2024; // Default year
+let currentYear = 2025; // Default year
 let peopleLimit = 12; // Initial limit for people data
 let placesLimit = 12; // Initial limit for places data
 
@@ -45,7 +45,7 @@ function fetchDataForYear(year) {
 // Function to update dropdown menu dynamically
 function updateDropdownMenu(currentYear) {
     const dropdownMenu = document.querySelector('.dropdown-menu');
-    const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017]; // List of available years
+    const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015]; // List of available years
     dropdownMenu.innerHTML = ''; // Clear existing dropdown items
 
     // Generate dropdown items, excluding the current year
@@ -160,7 +160,7 @@ function showDetailedView(name) {
 
 // Fetch data for the person across all years
 function fetchPersonData(name) {
-    const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]; // Add more years as needed
+    const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]; // Add more years as needed
     const detailedTableBody = document.querySelector('#detailedTable tbody');
     detailedTableBody.innerHTML = ''; // Clear previous data
 
