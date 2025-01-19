@@ -67,7 +67,7 @@
                 </div>
             </div>
     
-            <!-- Detailed View -->
+            <!-- Detailed PersonView -->
             <div id="detailedView" class="d-none row p-1 px-sm-5">
                 <table id="detailedTable" class="table table-hover mt-4">
                     <thead>
@@ -79,9 +79,27 @@
                     <tbody></tbody>
                 </table>
                 <div class="text-center">
-                    <button id="returnButton" class="btn rounded-5 mt-3">Return to Main Tables</button>
+                    <button id="returnButton" class="btn rounded-5 mt-3">Return to Lifelog</button>
                 </div>
             </div>
+
+
+            <!-- Detailed View for Places -->
+            <div id="placesDetailedView" class="d-none row p-1 px-sm-5">
+                    <table id="placesDetailedTable" class="table table-hover mt-4">
+                        <thead>
+                            <tr>
+                                <th id="placeNameHeader"></th> <!-- This will now dynamically show the place name -->
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="text-center">
+                        <button id="returnToLifelogPlaces" class="btn rounded-5 mt-3">Return to Lifelog</button>
+                    </div>
+            </div>
+
 
         </div>
     </div>

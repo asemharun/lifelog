@@ -84,9 +84,11 @@ function populateTable(tableId, data, limit) {
         }
     });
 
-    // Add click listeners for names
+    // Add click listeners
     if (tableId === 'peopleData') {
         setupNameClickListeners();
+    } else if (tableId === 'placesData') {
+        setupPlaceClickListeners();
     }
 }
 
@@ -200,7 +202,82 @@ document.getElementById('returnButton').addEventListener('click', function () {
     document.getElementById('mainTables').classList.remove('d-none');
 });
 
+
+
+// Setup click listeners for places
+function setupPlaceClickListeners() {
+    document.querySelectorAll('#placesData tbody tr td:first-child').forEach(cell => {
+        cell.addEventListener('click', function () {
+            const placeName = this.textContent;
+            showPlacesDetailedView(placeName);
+        });
+    });
+}
+
+// Show detailed view for a place
+function showPlacesDetailedView(placeName) {
+    // Hide main tables
+    document.getElementById('mainTables').classList.add('d-none');
+
+    // Show detailed view for Places
+    const placesDetailedView = document.getElementById('placesDetailedView');
+    placesDetailedView.classList.remove('d-none');
+
+    // Set the place name in the table header
+    document.getElementById('placeNameHeader').textContent = placeName;
+
+    // Fetch detailed data for the place
+    fetchPlaceData(placeName);
+}
+
+// Fetch data for the place across all years
+function fetchPlaceData(placeName) {
+    const years = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]; // Available years
+    const placesTableBody = document.querySelector('#placesDetailedTable tbody');
+    placesTableBody.innerHTML = ''; // Clear previous data
+
+    let placeDataArray = []; // Store place data to sort later
+
+    years.forEach(year => {
+        const placesUrl = `https://sheets.googleapis.com/v4/spreadsheets/1vud3tHw3S4KdYiGsv5JJGDxdwEISqtYi8TnXMBw3ExA/values/${year}!D4:E171?key=AIzaSyA38L2S7j6e9WokKVlrTnoJUXnmRWhUnTY`;
+
+        fetch(placesUrl)
+        .then(response => response.json())
+        .then(data => {
+            const placeData = data.values.find(row => row[0] === placeName);
+
+            if (placeData) {
+                placeDataArray.push({ year: year, amount: placeData[1] });
+
+                // Sort data so latest year appears first
+                placeDataArray.sort((a, b) => b.year - a.year);
+
+                // Clear and re-populate the table
+                placesTableBody.innerHTML = '';
+                placeDataArray.forEach((item, index) => {
+                    let row = placesTableBody.insertRow();
+                    row.innerHTML = `<td>${item.year}</td><td>${item.amount}</td>`;
+                });
+            }
+        })
+        .catch(error => console.error(`Error fetching data for ${year}:`, error));
+});
+}
+
+// Return to main view (Places)
+document.getElementById('returnToLifelogPlaces').addEventListener('click', function () {
+    // Hide Places Detailed View
+    document.getElementById('placesDetailedView').classList.add('d-none');
+
+    // Show main tables
+    document.getElementById('mainTables').classList.remove('d-none');
+});
+
+
+
+
 // Initial fetch for the default year (2024)
 fetchDataForYear(currentYear);
 updateDropdownMenu(currentYear);
 setupShowButtons();
+
